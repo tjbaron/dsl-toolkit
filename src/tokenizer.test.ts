@@ -1,7 +1,8 @@
-import { Tokenizer, Contexts } from './tokenizer';
+import { Tokenizer } from './tokenizer';
 import { regexMatcher } from './tokenMatchers/regex';
 import { scopeMatcher } from './tokenMatchers/scope';
 import { untilMatcher } from './tokenMatchers/until';
+import { Contexts } from './types';
 
 const englishContexts: Contexts = {
     paragraph: [untilMatcher('.', 'sentence', 'sentence')],
@@ -20,7 +21,6 @@ const mathContexts: Contexts = {
 test('English: Hello world', () => {
     const tokenizer = new Tokenizer(englishContexts, 'sentence');
     const tokens = tokenizer.tokenize('Hello world');
-    console.log(tokens);
     expect(tokens).toStrictEqual([
         { type: 'word', token: 'Hello' },
         { type: 'word', token: 'world' },
@@ -30,7 +30,6 @@ test('English: Hello world', () => {
 test('English: I eat. You ate.', () => {
     const tokenizer = new Tokenizer(englishContexts, 'paragraph');
     const tokens = tokenizer.tokenize('I eat. You ate.');
-    console.log(tokens);
     expect(tokens).toStrictEqual([
         {
             type: 'sentence',

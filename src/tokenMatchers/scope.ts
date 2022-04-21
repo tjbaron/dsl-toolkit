@@ -1,4 +1,4 @@
-import { Token, TokenMatcher } from '../tokenizer';
+import { Token, TokenMatcher } from '../types';
 
 type ScopeMatcher = (open: string, close: string, type: string, scope: string) => TokenMatcher;
 
@@ -10,7 +10,7 @@ export const scopeMatcher: ScopeMatcher = (open, close, type, scope) => {
         let token = c;
         while (true) {
             c = next();
-            if (c === null) return null;
+            if (typeof(c) !== 'string') return null;
             token += c;
             if (c === open) closureCount++;
             else if (c === close) closureCount--;

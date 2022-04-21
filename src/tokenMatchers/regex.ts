@@ -1,4 +1,4 @@
-import { TokenMatcher } from '../tokenizer';
+import { TokenMatcher } from '../types';
 
 type RegexMatcher = (reg: RegExp, type: string) => TokenMatcher;
 
