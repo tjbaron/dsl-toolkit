@@ -3,7 +3,7 @@ import { Contexts, Token } from "./types";
 export class Tokenizer {
     constructor(private contexts: Contexts, private defaultContext: any) {}
 
-    tokenize = (str: string, ctx?: string) => {
+    tokenize = (str: any, ctx?: string) => {
         const tokenFns = (ctx && this.contexts[ctx]) || this.contexts[this.defaultContext];
         const tokens: Token[] = [];
         let i = 0;
